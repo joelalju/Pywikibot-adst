@@ -53,8 +53,8 @@ import pywikibot
 
 
 if __name__ == "__main__":
-    site = pywikibot.Site("test", "wikipedia") 
-    username = "Mohitahmed"  # Replace with your Wikipedia username.
+    site = pywikibot.Site("en", "mediawiki") 
+    username = "Root"  # Replace with your Wikipedia username.
 
 # Fetch your contributions.
     contribs = site.usercontribs(user=username)
@@ -65,27 +65,28 @@ if __name__ == "__main__":
         
         if page_title not in pagelist:
              pagelist.append(page_title)
+             print(page_title)
 
-    page = pywikibot.Page(site, page_title)
+    #page = pywikibot.Page(site, page_title)
 
     # if not page.exists():
     #      print(f"The page '{page_title}' does not exist.")
     #      return
     wordListDict = dict()
 
-    wordListPage = pywikibot.Page(site, "User:Mohitahmed/wordList")
-    words = ["apple" , "house"]
+    wordListPage = pywikibot.Page(site, "Word map")
+    words = ["Introduction" , "course"]
     # collect word and urls
     for pages in pagelist: 
-        if(pages == "User:Mohitahmed/wordList"):
+        if(pages == "Word map"):
             continue
         page = pywikibot.Page(site, pages)
         #print(page.text)
         page_text = page.text
         for word in words:
-            if word in page_text:
+            if word in page_text or word in pages:
                 #new_content = word + pages
-                url = "http://placeholder/"+pages
+                url = "http://192.168.137.88/mediawiki/index.php/"+str(pages).replace(" ","_")
                 if(word in wordListDict):
                     wordListDict[word].append(url)
                 else:

@@ -17,7 +17,7 @@ def edit_page(page_title2, new_content, summary):
 
     if page_text != new_content:
         
-        page.text = new_content
+        page.text += new_content
 
         page.save(summary=summary)
         print(f"Page '{page_title2}' successfully edited.")
@@ -54,17 +54,18 @@ if __name__ == "__main__":
              pagelist.append(page_title)
              
         
-            
+    page_title2 = "User:Mohitahmed/page3"        
         
+    summary = "Updating page content."
+    result = ""
     
     for pages in pagelist:
-        page_title2 = "User:Mohitahmed/page3"
+        
         new_content = "\n" + pages + "\n"
         new_content += " https://test.wikipedia.org/wiki/User:" + pages  + "\n"
-    
-        summary = "Updating page content."
-        edit_page(page_title2, new_content, summary)
+        result += new_content
         
+    edit_page(page_title2, result, summary)    
 
     #page_title2 = "User:Mohitahmed/page3"
     #r = read_page(page_title)

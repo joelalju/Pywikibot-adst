@@ -59,11 +59,12 @@ if __name__ == "__main__":
     
     for pages in pagelist:
         page_title2 = "User:Mohitahmed/page3"
-        new_content = pages
-        new_content += "https://test.wikipedia.org/wiki/User:" + pages +"\n"
+        new_content = "\n" + pages + "\n"
+        new_content += " https://test.wikipedia.org/wiki/User:" + pages  + "\n"
+    
         summary = "Updating page content."
         edit_page(page_title2, new_content, summary)
-        print(pages)
+        
 
     #page_title2 = "User:Mohitahmed/page3"
     #r = read_page(page_title)

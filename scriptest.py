@@ -3,6 +3,8 @@ import pywikibot
 def edit_page(page_title2, new_content, summary):
     
     site = pywikibot.Site('wikipedia:test')
+    #site = pywikibot.Site('mediawiki:en')
+    
 
     page = pywikibot.Page(site, page_title2)
 
@@ -42,6 +44,8 @@ def edit_page(page_title2, new_content, summary):
 if __name__ == "__main__":
     site = pywikibot.Site("test", "wikipedia") 
     username = "Mohitahmed"  # Replace with your Wikipedia username.
+    #site = pywikibot.Site("en", "mediawiki") 
+    #username = "Root"  # Replace with your Wikipedia username.
 
 # Fetch your contributions.
     contribs = site.usercontribs(user=username)
@@ -55,6 +59,7 @@ if __name__ == "__main__":
              
         
     page_title2 = "User:Mohitahmed/page3"        
+    #page_title2 = "Word index"        
         
     summary = "Updating page content."
     result = ""
@@ -62,7 +67,8 @@ if __name__ == "__main__":
     for pages in pagelist:
         
         new_content = "\n" + pages + "\n"
-        new_content += " https://test.wikipedia.org/wiki/User:" + pages  + "\n"
+        new_content += "https://test.wikipedia.org/wiki/User:" + str(pages).replace(" ","_")  + "\n"
+        #new_content += "http://192.168.137.88/mediawiki/index.php/" + str(pages).replace(" ","_")  + "\n"
         result += new_content
         
     edit_page(page_title2, result, summary)    
